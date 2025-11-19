@@ -1,2 +1,11 @@
-# DSCI-522-Group-Project
-Repository for our group project in DSCI 522
+# Binary Classification of Hotel Cancellations
+
+Authors:
+
+Project Summary:
+
+Usage (how to run data analysis):
+
+Dependencies:
+
+Licenses:
