@@ -9,5 +9,3 @@ dependencies:
 - scikit-learn=1.7.2
 - matplotlib=3.10.8
 - ipykernel=7.1.0
-- vegafusion=2.0.2
-- vegafusion-jupyter=1.6.9
