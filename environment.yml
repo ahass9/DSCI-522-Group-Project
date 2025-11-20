@@ -1,0 +1,10 @@
+name: dsci522_project
+channels:
+- conda-forge
+dependencies:
+- python=3.12.12
+- pandas=2.3.3
+- conda-lock=3.0.4
+- altair=6.0.0
+- scikit-learn=1.7.2
+- matplotlib=3.10.8
