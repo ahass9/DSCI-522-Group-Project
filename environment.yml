@@ -8,3 +8,4 @@ dependencies:
 - altair=6.0.0
 - scikit-learn=1.7.2
 - matplotlib=3.10.8
+- ipykernel=7.1.0
