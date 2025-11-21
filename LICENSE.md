@@ -1,3 +1,24 @@
+## Analysis report
+
+Copyright (c) 2025
+
+This report (source contained in the [`DSCI-522-Group-Project` repository](https://github.com/ahass9/DSCI-522-Group-Project)) is made available under the **Attribution-NonCommercial-ShareAlike 4.0 International** ([CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)). 
+
+This is a human-readable summary of (and not a substitute for) the [license](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode).
+
+## You are free to:
+
+- **Share** — copy and redistribute the material in any medium or format
+- **Adapt** — remix, transform, and build upon the material
+
+The licensor cannot revoke these freedoms as long as you follow the license terms:
+
+- **Attribution** — Credit must be given to the original authors.
+- **NonCommercial** — You may not use the material for commercial purposes.
+- **ShareAlike** — Any Adapted materials must be distributed under the same license.
+
+## Code 
+
 MIT License
 
 Copyright (c) 2025 Ashifa Hassan, Nour Shawky, Kin Chung Choy, Athul Sasidharan
