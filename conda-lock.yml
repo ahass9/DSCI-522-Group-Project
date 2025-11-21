@@ -22,8 +22,8 @@ metadata:
     used_env_vars: []
   platforms:
   - linux-64
-  - osx-arm64
   - osx-64
+  - osx-arm64
   - win-64
   sources:
   - environment.yml
@@ -4233,10 +4233,10 @@ package:
   dependencies:
     __glibc: '>=2.17,<3.0.a0'
     zstd: '>=1.5.7,<1.6.0a0'
-  url: https://conda.anaconda.org/conda-forge/linux-64/ld_impl_linux-64-2.45-h1aa0949_0.conda
+  url: https://conda.anaconda.org/conda-forge/linux-64/ld_impl_linux-64-2.45-hbd61a6d_1.conda
   hash:
-    md5: 1450224b3e7d17dfeb985364b77a4d47
-    sha256: 32321d38b8785ef8ddcfef652ee370acee8d944681014d47797a18637ff16854
+    md5: 74973af25f7e298f684f7782f4e8b43b
+    sha256: 94ca574cba401afa9a6feacb5c1a2ef2af4f24deab2b2266064364e15fd7b642
   category: main
   optional: false
 - name: lerc
@@ -5089,7 +5089,7 @@ package:
   category: main
   optional: false
 - name: libglib
-  version: 2.86.1
+  version: 2.86.2
   manager: conda
   platform: linux-64
   dependencies:
@@ -5099,14 +5099,14 @@ package:
     libiconv: '>=1.18,<2.0a0'
     libzlib: '>=1.3.1,<2.0a0'
     pcre2: '>=10.46,<10.47.0a0'
-  url: https://conda.anaconda.org/conda-forge/linux-64/libglib-2.86.1-h32235b2_2.conda
+  url: https://conda.anaconda.org/conda-forge/linux-64/libglib-2.86.2-h32235b2_0.conda
   hash:
-    md5: 986dcf488a1aced411da84753d93d078
-    sha256: fc82277d0d6340743732c48dcbac3f4e9ee36902649a7d9a02622b0713ce3666
+    md5: 0cb0612bc9cb30c62baf41f9d600611b
+    sha256: 918306d6ed211ab483e4e19368e5748b265d24e75c88a1c66a61f72b9fa30b29
   category: main
   optional: false
 - name: libglib
-  version: 2.86.1
+  version: 2.86.2
   manager: conda
   platform: win-64
   dependencies:
@@ -5118,10 +5118,10 @@ package:
     ucrt: '>=10.0.20348.0'
     vc: '>=14.3,<15'
     vc14_runtime: '>=14.44.35208'
-  url: https://conda.anaconda.org/conda-forge/win-64/libglib-2.86.1-hd9c3897_2.conda
+  url: https://conda.anaconda.org/conda-forge/win-64/libglib-2.86.2-hd9c3897_0.conda
   hash:
-    md5: 1f3effb70f1bb9dcdc469d03522bbe2e
-    sha256: d3316c26e2a84a5f38eab2e113feb484522a31dc2a9b75f9f35eefb5821f69ba
+    md5: fbd144e60009d93f129f0014a76512d3
+    sha256: 60fa317d11a6f5d4bc76be5ff89b9ac608171a00b206c688e3cc4f65c73b1bc4
   category: main
   optional: false
 - name: libglvnd
