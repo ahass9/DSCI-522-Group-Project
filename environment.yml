@@ -9,3 +9,4 @@ dependencies:
 - scikit-learn=1.7.2
 - matplotlib=3.10.8
 - ipykernel=7.1.0
+- vl-convert-python=1.8.0
