@@ -38,9 +38,13 @@ If you are proposing a feature:
 * Remember that this is a volunteer-driven project, and that contributions
   are welcome :)
 
-## Get Started!
+## Generating Pull Requests
 
-*****still needs to be filled in*********
+* Create a new git branch where you plan to make your new features or bug fixes.
+* Ensure that you are using the correct environment, see usage in readme file.
+* After adding your changes or fixs to the new branch in the remote repository, generate a pull request.
+* Be mindful that it may take some time for contributors to review and make comments about your change.
+* If a team memeber approves, your changes will be mereged to the main branch of the project.
 
 Before you submit a pull request, check that it meets these guidelines:
 
