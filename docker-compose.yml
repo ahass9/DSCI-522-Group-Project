@@ -1,13 +1,13 @@
-# services:
-#   # run jupyter notebook inside jupyter 
-#   jupyter-notebook:
-#     image:  nourshawky03/
-#     ports:
-#       - "8888:8888"
-#     volumes:
-#       - .:/home/jovyan
-#     deploy:
-#       resources:
-#         limits:
-#           memory: 5G
-#     platform: linux/amd64
+services:
+  # run jupyter notebook inside jupyter 
+  jupyter-notebook:
+    image:  nourshawky03/dsci522-project:35b7699ca4ad
+    ports:
+      - "8888:8888"
+    volumes:
+      - .:/home/jovyan
+    deploy:
+      resources:
+        limits:
+          memory: 5G
+    platform: linux/amd64
