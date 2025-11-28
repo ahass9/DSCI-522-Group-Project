@@ -28,6 +28,17 @@ Open ```analysis.ipynb``` and navigate to the Kernel, then select ```Python[cond
 
 After that, in the menu options, select Restart Kernel and Run all Cells.
 
+### Running the Docker Container and analysis
+
+1) Make sure Docker Desktop is running on your computer
+2) Clone this repository 
+3) Navigate to the root of the project repository and run:
+```bash
+docker compose up
+```
+4) In the terminal, look for a URL that starts with ```http://127.0.0.1:8888/lab?token=```. Copy and paste that URL into your browser. Make sure that port 8888 is free. 
+5) To shut down the container and remove it, type Cntrl C in your terminal then run ```docker compose rm```.
+
 ### Dependencies:
 - ```python=3.12.12```
 - ```pandas=2.3.3```
