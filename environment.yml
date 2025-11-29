@@ -2,7 +2,7 @@ name: dsci522_project
 channels:
 - conda-forge
 dependencies:
-- python=3.11
+- python=3.11.14
 - pandas=2.3.3
 - conda-lock=3.0.4
 - altair=6.0.0
@@ -10,3 +10,5 @@ dependencies:
 - matplotlib=3.10.8
 - ipykernel=7.1.0
 - vl-convert-python=1.8.0
+- pandera=0.27.0
+- numpy=2.3.5
