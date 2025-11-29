@@ -45,12 +45,12 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
       
       - name: Update docker-compose.yml with new image tag
-        if: success()
+        if: success() && startsWith(github.ref, 'refs/heads/')
         run: |
           sed -i "s|image:  nourshawky03/dsci522-project:.*|image:  nourshawky03/dsci522-project:${{ steps.meta.outputs.version }}|" docker-compose.yml
 
       - name: Commit and push updated docker-compose.yml
-        if: success()
+        if: success() && startsWith(github.ref, 'refs/heads/')
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
