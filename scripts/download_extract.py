@@ -35,8 +35,8 @@ def download_extract(input_path, output_path):
     ---------
     From command line, run:
 
-    >>> python src/download_data.py --input-path https://exampleurl.com/data.csv --output-path data/raw/hotel_data.csv
-    >>> python src/download_data.py --input-path data/hotel_booking.csv --output-path data/raw/hotel_data.csv
+    >>> python scripts/download_extract.py --input-path https://exampleurl.com/data.csv --output-path data/raw/hotel_data.csv
+    >>> python scripts/download_extract.py --input-path data/hotel_booking.csv --output-path data/raw/hotel_data.csv
     """
     
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
