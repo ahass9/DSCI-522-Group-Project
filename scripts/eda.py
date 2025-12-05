@@ -8,7 +8,6 @@ features are highly correlated.
 
 import pandas as pd
 import click
-import os
 import matplotlib.pyplot as plt
 import altair as alt
 import numpy as np
@@ -114,7 +113,7 @@ def create_eda_plot(input_path, figure_prefix):
     
     room_type.save(f"{figure_prefix}_reserved_room_type_vs_cancellations.png")
     click.echo("Bar chart of reserved room type vs cancellations saved!")
-    
+
 if __name__ == '__main__':
     create_eda_plot()
 
