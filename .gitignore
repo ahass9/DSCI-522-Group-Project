@@ -1,0 +1,7 @@
+.DS_Store
+.ipynb_checkpoints/
+.jupyter/
+.cache/
+.local/
+.config/
+.ipython/
