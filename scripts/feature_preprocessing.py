@@ -52,7 +52,7 @@ def preprocess_features(train_input_path,test_input_path,x_train_transformed_out
     ---------
     From command line, run:
 
-    >>> python scripts/feature_transformations.py \
+    >>> python scripts/feature_preprocessing.py \
     --train-input-path data/processed/hotel_train_df.csv \
     --test-input-path data/processed/hotel_test_df.csv \
     --x-train-transformed-output-path data/processed/X_train_transformed.csv \

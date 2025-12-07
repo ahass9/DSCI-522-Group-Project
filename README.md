@@ -37,6 +37,41 @@ After that, in the menu options, select Restart Kernel and Run all Cells.
 docker compose up
 ```
 4) In the terminal, look for a URL that starts with ```http://127.0.0.1:8888/lab?token=```. Copy and paste that URL into your browser. Make sure that port 8888 is free. 
+5) To run the analysis, open a terminal and run the following:
+```bash 
+python scripts/download_data.py --input-path https://raw.githubusercontent.com/manthangandhi/hotel_cancellation_prediction/refs/heads/main/data/hotel_bookings.csv --output-path data/raw/hotel_data.csv
+
+python scripts/clean_data.py --input-path data/raw/hotel_data.csv --output-path data/processed/hotel_data_cleaned.csv
+
+python scripts/split_data.py --input-path data/processed/hotel_data_cleaned.csv --train-output-path data/processed/hotel_train_df.csv --test-output-path data/processed/hotel_test_df.csv
+
+python scripts/eda.py --input-path data/processed/hotel_train_df.csv --figure-prefix results/figures/eda
+
+python scripts/feature_preprocessing.py \
+    --train-input-path data/processed/hotel_train_df.csv \
+    --test-input-path data/processed/hotel_test_df.csv \
+    --x-train-transformed-output-path data/processed/X_train_transformed.csv \
+    --x-test-transformed-output-path data/processed/X_test_transformed.csv \
+    --y-train-output-path data/processed/y_train.csv \
+    --y-test-output-path data/processed/y_test.csv \
+    --preprocessor-output-path results/models/preprocessor.pkl
+
+python scripts/model_results.py \
+        --x-train-path data/processed/X_train_transformed.csv \
+        --x-test-path data/processed/X_test_transformed.csv \
+        --y-train-path data/processed/y_train.csv \
+        --y-test-path data/processed/y_test.csv \
+        --metrics-output-path results/tables/test_accuracy.csv \
+        --cm-csv-output-path results/tables/confusion_matrix.csv \
+        --cm-figure-output-path results/figures/confusion_matrix_knn.png \
+        --roc-figure-output-path results/figures/roc_curve_knn.png
+
+quarto render reports/hotel_cancellation_classification_analysis.qmd --to html
+quarto render reports/hotel_cancellation_classification_analysis.qmd --to pdf
+```
+
+**please note that since we have github pages set up to host our rendered quarto report, the rendered html and pdf files can be found in the docs/reports folder. Manually saved copies can also be found in the repository's main reports folder.
+
 5) To shut down the container and remove it, type Cntrl C in your terminal then run ```docker compose rm```.
 
 ### Dependencies:

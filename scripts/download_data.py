@@ -15,7 +15,7 @@ import os
 @click.option("--output-path")
 
 # Function for Downloading raw hotel dataset
-def download_extract(input_path, output_path):
+def download_data(input_path, output_path):
     """Hotel Data Downloader 
     Reads in data from url/file path and saves it to the output path (in the data/raw folder)
 
@@ -35,8 +35,8 @@ def download_extract(input_path, output_path):
     ---------
     From command line, run:
 
-    >>> python scripts/download_extract.py --input-path https://exampleurl.com/data.csv --output-path data/raw/hotel_data.csv
-    >>> python scripts/download_extract.py --input-path data/hotel_booking.csv --output-path data/raw/hotel_data.csv
+    >>> python scripts/download_data.py --input-path https://exampleurl.com/data.csv --output-path data/raw/hotel_data.csv
+    >>> python scripts/download_data.py --input-path data/hotel_booking.csv --output-path data/raw/hotel_data.csv
     """
     
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
@@ -46,5 +46,5 @@ def download_extract(input_path, output_path):
     click.echo(f"Saved data to: {output_path}")
 
 if __name__ == "__main__":
-    download_extract()
+    download_data()
 

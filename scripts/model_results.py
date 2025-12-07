@@ -82,8 +82,8 @@ def model_results(
         --x-test-path data/processed/X_test_transformed.csv \
         --y-train-path data/processed/y_train.csv \
         --y-test-path data/processed/y_test.csv \
-        --metrics-output-path results/folders/test_accuracy.csv \
-        --cm-csv-output-path results/folders/confusion_matrix.csv \
+        --metrics-output-path results/tables/test_accuracy.csv \
+        --cm-csv-output-path results/tables/confusion_matrix.csv \
         --cm-figure-output-path results/figures/confusion_matrix_knn.png \
         --roc-figure-output-path results/figures/roc_curve_knn.png
     """

@@ -47,7 +47,7 @@ def clean_data(input_path, output_path):
     ---------
     From command line, run:
 
-    >>> python scripts/clean_transform.py --input-path data/raw/hotel_data.csv --output-path data/processed/hotel_data_cleaned.csv
+    >>> python scripts/clean_data.py --input-path data/raw/hotel_data.csv --output-path data/processed/hotel_data_cleaned.csv
     """
 
     os.makedirs(os.path.dirname(output_path), exist_ok=True)

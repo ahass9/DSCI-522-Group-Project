@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.21">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -44,28 +44,64 @@ div.csl-indent {
 }</style>
 
 
-<script src="hotel_cancellation_classification_analysis_files/libs/clipboard/clipboard.min.js"></script>
-<script src="hotel_cancellation_classification_analysis_files/libs/quarto-html/quarto.js" type="module"></script>
-<script src="hotel_cancellation_classification_analysis_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="hotel_cancellation_classification_analysis_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="hotel_cancellation_classification_analysis_files/libs/quarto-html/popper.min.js"></script>
-<script src="hotel_cancellation_classification_analysis_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="hotel_cancellation_classification_analysis_files/libs/quarto-html/anchor.min.js"></script>
-<link href="hotel_cancellation_classification_analysis_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="hotel_cancellation_classification_analysis_files/libs/quarto-html/quarto-syntax-highlighting-ea1d7ac60288e0f1efdbc993fd8432ae.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="hotel_cancellation_classification_analysis_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="hotel_cancellation_classification_analysis_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="hotel_cancellation_classification_analysis_files/libs/bootstrap/bootstrap-d6a003b94517c951b2d65075d42fb01b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-3906a769cb48dc3223fd9b7e828ec842.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
 
 
 </head>
 
 <body class="quarto-light">
 
-<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-  <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
    
   <ul>
   <li><a href="#summary" id="toc-summary" class="nav-link active" data-scroll-target="#summary"><span class="header-section-number">1</span> Summary</a></li>
@@ -78,7 +114,8 @@ div.csl-indent {
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">8</span> References</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="hotel_cancellation_classification_analysis.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
-</div>
+    </div>
+<!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
@@ -145,7 +182,7 @@ Figure&nbsp;1: Correlation Matrix of Selected Numerical Features.
 </div>
 </div>
 <p>We can observe from <a href="#fig-eda-bars" class="quarto-xref">Figure&nbsp;2</a> that almost all cancellations are happening for new guests. Repeated guests who have previously booked with the hotel before do not seem to cancel much. In addition, the majority of cancellations occur for guests who have booked room type A. Interestingly, guests seem to cancel more when they have not provided a deposit on their booking and some also cancel when their deposit is non refundable.</p>
-<p>One small but notable pattern is the slight negative correlation between total_of_special_requests and is_canceled, suggesting that guests who invest more effort in customizing their stay may be somewhat less likely to cancel. Although this relationship is modest, it supports our decision to include special requests in the feature set, as even weak signals can help a classification model refine its decision boundary. Similarly, mild positive correlations between lead_time and is_canceled indicate that far-in-advance bookings tend to cancel slightly more often, a trend also reported in the hotel cancellation literature.</p>
+<p>One small but notable pattern is the slight negative correlation between total_of_special_requests and is_canceled, suggesting that guests who invest more effort in customizing their stay may be somewhat less likely to cancel. Although this relationship is modest, it supports our decision to include special requests in the feature set, as even weak signals can help a classification model refine its decision boundary. Similarly, mild positive correlations between lead_time and is_canceled indicate that far-in-advance bookings tend to cancel slightly more often, a trend also reported in the hotel cancellation literature <span class="citation" data-cites="antonio2019_bigdata antonio2019_dataset">(<a href="#ref-antonio2019_bigdata" role="doc-biblioref">Antonio, De Almeida, and Nunes 2019</a>; <a href="#ref-antonio2019_dataset" role="doc-biblioref">Antonio, Almeida, and Nunes 2019</a>)</span>.</p>
 <div id="fig-eda-bars" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-eda-bars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -207,7 +244,9 @@ Figure&nbsp;4: ROC Curve for the KNN Model
 <p><strong>Overall takeaway:</strong></p>
 <p>In overall, the KNN model provides a <strong>useful starting point</strong> for predicting hotel booking cancellations. It clearly outperforms a simple majority baseline, correctly identifies most non-cancellations and captures a meaningful portion of actual cancellations. With additional tuning, more features and a more careful treatment of missing values and thresholds, this approach could be developed into a practical decision support tool to help hotels manage overbooking strategies, communicate proactively with high-risk guests and reduce the last minute revenue losses.</p>
 </section>
-<section id="references" class="level2 unnumbered" data-number="8">
+<section id="references" class="level2" data-number="8">
+
+
 
 
 </section>
@@ -219,11 +258,13 @@ Antonio, N., A. de Almeida, and L. Nunes. 2017. <span>“Predicting Hotel Bookin
 <div id="ref-antonio2019_dataset" class="csl-entry" role="listitem">
 ———. 2019. <span>“Hotel Booking Demand Datasets.”</span> <em>Data in Brief</em> 22: 41–49.
 </div>
+<div id="ref-antonio2019_bigdata" class="csl-entry" role="listitem">
+Antonio, N., A. De Almeida, and L. Nunes. 2019. <span>“Big Data in Hotel Revenue Management: Exploring Cancellation Drivers to Gain Insights into Booking Cancellation Behavior.”</span> <em>Cornell Hospitality Quarterly</em> 60 (4): 298–319.
+</div>
 <div id="ref-sanchez2020" class="csl-entry" role="listitem">
 Sánchez, E. C., A. J. Sánchez-Medina, and M. Pellejero. 2020. <span>“Identifying Critical Hotel Cancellations Using Artificial Intelligence.”</span> <em>Tourism Management Perspectives</em> 35.
 </div>
-</div></section></div></main>
-<!-- /main column -->
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -275,13 +316,14 @@ Sánchez, E. C., A. J. Sánchez-Medina, and M. Pellejero. 2020. <span>“Identif
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
