@@ -12,6 +12,8 @@ Using 5-fold cross validation with F1 score on the validation set, KNN gave the 
 
 #### First-time setup
 
+Clone the repository.
+
 Run the following command from the root of the DSCI-522-Group-Project Repository:
 
 ```bash
