@@ -38,7 +38,7 @@ figs: \
 	results/figures/eda_deposit_type_vs_cancellations_count.png \
 	results/figures/eda_hotel_vs_cancellations.png \
 	results/figures/eda_lead_time_density.png \
-	results/figures/eda_repeated_guest_cancellations_count.png \
+	results/figures/eda_repeated_guest_vs_cancellations_count.png \
 	results/figures/eda_reserved_room_type_vs_cancellations.png \
 	results/figures/eda_target_var_distribution.png \
 	results/figures/confusion_matrix_knn.png \
@@ -48,7 +48,7 @@ results/figures/eda_correlation_matrix.png \
 results/figures/eda_deposit_type_vs_cancellations_count.png \
 results/figures/eda_hotel_vs_cancellations.png \
 results/figures/eda_lead_time_density.png \
-results/figures/eda_repeated_guest_cancellations_count.png \
+results/figures/eda_repeated_guest_vs_cancellations_count.png \
 results/figures/eda_reserved_room_type_vs_cancellations.png \
 results/figures/eda_target_var_distribution.png: \
 	scripts/eda.py \
@@ -116,7 +116,7 @@ reports/hotel_cancellation_classification_analysis.pdf: \
 	results/figures/eda_correlation_matrix.png \
 	results/figures/eda_deposit_type_vs_cancellations_count.png \
 	results/figures/eda_reserved_room_type_vs_cancellations.png \
-	results/figures/eda_repeated_guest_cancellations_count.png
+	results/figures/eda_repeated_guest_vs_cancellations_count.png
 	quarto render reports/hotel_cancellation_classification_analysis.qmd --to html
 	quarto render reports/hotel_cancellation_classification_analysis.qmd --to pdf
 
