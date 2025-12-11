@@ -15,3 +15,4 @@ dependencies:
 - quarto=1.8.26
 - click=8.3.1
 - jupyterlab=4.5.0
+- pytest=9.0.2
