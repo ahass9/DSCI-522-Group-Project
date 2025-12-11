@@ -116,7 +116,7 @@ div.csl-indent {
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="hotel_cancellation_classification_analysis.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -166,7 +166,7 @@ div.csl-indent {
 <p>To ensure quality and integrity of the data prior to modelling, we used the pandera package to conduct a series of validation checks. These checks enforced correct column name and column types, valid category levels and numerical bounds for our predictor variables. We then performed exploratory data analysis (EDA) to examine the distribution of our predictor variables across different levels of our target variable, ‘is_canceled’.</p>
 <p>For predictive modeling, we conducted cross validation on 3 different models: KNN, SVM RBF and Decision trees, using our training data. The best performing model (KNN) was then evaluated on the test set to assess whether it generalizes well to unseen data and evaluate how well it was able to correctly predict guests that cancel their hotel reservations versus those who do not.Since the entire dataset is quite large, we’ll be focusing on hotel data from the most recent year, the year 2017, to make predictions about hotel cancellations (as per the research question).</p>
 </section>
-<section id="analysis" class="level2" data-number="6">
+<section id="analysis" class="level2 page-columns page-full" data-number="6">
 <h2 data-number="6" class="anchored" data-anchor-id="analysis"><span class="header-section-number">6</span> Analysis</h2>
 <p>The correlation matrix (<a href="#fig-corrmatrix" class="quarto-xref">Figure&nbsp;1</a>) helped us assess how our selected numerical features relate to one another and to the target variable, is_canceled. Overall, the matrix shows that most predictors have only weak linear relationships with cancellations, which suggests that no single booking feature is strongly determinant on its own. This aligns with our expectation that cancellation behavior is influenced by several interacting factors rather than a single dominant one. We do, however, observe some stronger correlations among the guest history features: lead_time, previous_cancellations, and previous_bookings_not_canceled are highly related, reflecting that guests with long booking horizons tend to be more frequent travelers with greater booking histories. These relationships are not necessarily indicative of cancellation risk themselves, but they confirmed that our predictor set contains overlapping behavioral signals that the model will need to note.</p>
 <div class="center">
@@ -183,10 +183,18 @@ Figure&nbsp;1: Correlation Matrix of Selected Numerical Features.
 </div>
 <p>We can observe from <a href="#fig-eda-bars" class="quarto-xref">Figure&nbsp;2</a> that almost all cancellations are happening for new guests. Repeated guests who have previously booked with the hotel before do not seem to cancel much. In addition, the majority of cancellations occur for guests who have booked room type A. Interestingly, guests seem to cancel more when they have not provided a deposit on their booking and some also cancel when their deposit is non refundable.</p>
 <p>One small but notable pattern is the slight negative correlation between total_of_special_requests and is_canceled, suggesting that guests who invest more effort in customizing their stay may be somewhat less likely to cancel. Although this relationship is modest, it supports our decision to include special requests in the feature set, as even weak signals can help a classification model refine its decision boundary. Similarly, mild positive correlations between lead_time and is_canceled indicate that far-in-advance bookings tend to cancel slightly more often, a trend also reported in the hotel cancellation literature <span class="citation" data-cites="antonio2019_bigdata antonio2019_dataset">(<a href="#ref-antonio2019_bigdata" role="doc-biblioref">Antonio, De Almeida, and Nunes 2019</a>; <a href="#ref-antonio2019_dataset" role="doc-biblioref">Antonio, Almeida, and Nunes 2019</a>)</span>.</p>
-<div id="fig-eda-bars" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-eda-bars" class="column-page quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-eda-bars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-
+<div class="columns">
+<div class="column" style="width:33%;">
+<p><img src="../results/figures/eda_reserved_room_type_vs_cancellations.png" style="width:50.0%" height="250" class="figure-img"></p>
+</div><div class="column" style="width:33%;">
+<p><img src="../results/figures/eda_repeated_guest_vs_cancellations_count.png" style="width:50.0%" height="250" class="figure-img"></p>
+</div><div class="column" style="width:33%;">
+<p><img src="../results/figures/eda_deposit_type_vs_cancellations_count.png" style="width:50.0%" height="250" class="figure-img"></p>
+</div>
+</div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-eda-bars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2: EDA bar plots: Reserved Room Type, Repeated Guest Status, and Deposit Type vs Cancellations.
@@ -210,7 +218,7 @@ Figure&nbsp;3: KNN Confusion Matrix
 </figure>
 </div>
 </div>
-<p>As shown in Figure <a href="#fig-knnconfusion" class="quarto-xref">Figure&nbsp;3</a>, the KNN model achieved an accuracy of 0.732. Other stats are as follows:</p>
+<p>As shown in <a href="#fig-knnconfusion" class="quarto-xref">Figure&nbsp;3</a>, the KNN model achieved an accuracy of 0.731. Other stats are as follows:</p>
 <ul>
 <li>Cancellation Precision ≈ 0.70</li>
 <li>Cancellation Recall ≈ 0.53</li>

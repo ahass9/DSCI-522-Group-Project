@@ -59,22 +59,19 @@ We can observe from @fig-eda-bars that almost all cancellations are happening fo
 
 One small but notable pattern is the slight negative correlation between total_of_special_requests and is_canceled, suggesting that guests who invest more effort in customizing their stay may be somewhat less likely to cancel. Although this relationship is modest, it supports our decision to include special requests in the feature set, as even weak signals can help a classification model refine its decision boundary. Similarly, mild positive correlations between lead_time and is_canceled indicate that far-in-advance bookings tend to cancel slightly more often, a trend also reported in the hotel cancellation literature [@antonio2019_bigdata; @antonio2019_dataset].
 
-::: {#fig-eda-bars fig-cap="EDA bar plots: Reserved Room Type, Repeated Guest Status, and Deposit Type vs Cancellations."}
+::: {#fig-eda-bars .column-page fig-cap="EDA bar plots: Reserved Room Type, Repeated Guest Status, and Deposit Type vs Cancellations."}
 
-\begin{minipage}{0.32\linewidth}
-\centering
-\includegraphics[width=\linewidth]{../results/figures/eda_reserved_room_type_vs_cancellations.png}
-\end{minipage}
-\hfill
-\begin{minipage}{0.32\linewidth}
-\centering
-\includegraphics[width=\linewidth]{../results/figures/eda_repeated_guest_vs_cancellations_count.png}
-\end{minipage}
-\hfill
-\begin{minipage}{0.32\linewidth}
-\centering
-\includegraphics[width=\linewidth]{../results/figures/eda_deposit_type_vs_cancellations_count.png}
-\end{minipage}
+:::: {.columns}
+::: {.column width="33%"}
+![](../results/figures/eda_reserved_room_type_vs_cancellations.png){width=50% height=250px}
+:::
+::: {.column width="33%"}
+![](../results/figures/eda_repeated_guest_vs_cancellations_count.png){width=50% height=250px}
+:::
+::: {.column width="33%"}
+![](../results/figures/eda_deposit_type_vs_cancellations_count.png){width=50% height=250px}
+:::
+::::
 
 :::
 
@@ -100,7 +97,7 @@ KNN clearly performed best on this metric, and also consistently across the fold
 ![KNN Confusion Matrix](../results/figures/confusion_matrix_knn.png){#fig-knnconfusion width=70%}
 :::
 
-As shown in Figure @fig-knnconfusion, the KNN model achieved an accuracy of `{python} knn_test_accuracy_3dp`. Other stats are as follows: 
+As shown in @fig-knnconfusion, the KNN model achieved an accuracy of `{python} knn_test_accuracy_3dp`. Other stats are as follows: 
 
 - Cancellation Precision ≈ 0.70
 - Cancellation Recall ≈ 0.53
