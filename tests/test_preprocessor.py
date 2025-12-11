@@ -1,12 +1,14 @@
 '''
 Script to test the preprocessor function.
 
-Run "PYTHONPATH=. pytest -v" in root of project to run the tests
-PYTHONPATH= is needed to get package from src folder
+Run "pytest -v" in root of project to run the tests
 '''
 
 import pytest
 import pandas as pd
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from src.preprocessor import create_preprocessor
 
 def test_preprocessor_numeric_scaling():
@@ -50,6 +52,28 @@ def test_preprocessor_handles_unknown_category():
 
     # Should still work with unseen category
     assert transformed.shape[1] == 4
+
+def test_preprocessor_empty_features():
+    '''
+    Check for error handling in empty feature lists
+    '''
+    with pytest.raises(ValueError, match="At least one feature type must be provided"):
+        create_preprocessor([], [], [])
+
+def test_preprocessor_invalid_feature_type():
+    '''
+    Check for invalid feature type (not a list)
+    '''
+    with pytest.raises(TypeError, match="num_features must be a list of strings"):
+        create_preprocessor("age", ["city"], ["is_member"])
+
+
+def test_preprocessor_invalid_feature_entries():
+    '''
+    Check for invalid feature entries (non-string)
+    '''
+    with pytest.raises(TypeError, match="All entries in cat_features must be strings"):
+        create_preprocessor(["age"], [123], ["is_member"])
 
 
 if __name__ == "__main__":

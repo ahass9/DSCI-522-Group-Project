@@ -15,6 +15,9 @@ import pandas as pd
 import pickle
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.compose import make_column_transformer
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from src.preprocessor import create_preprocessor
 
 
