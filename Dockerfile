@@ -7,6 +7,8 @@ RUN conda clean --all -y -f
 RUN fix-permissions "${CONDA_DIR}"
 RUN fix-permissions "/home/${NB_USER}"
 
+USER root
+
 # Install make and compiler tools
 RUN apt-get update \
     && apt-get install -y build-essential nano \
@@ -15,4 +17,8 @@ RUN apt-get update \
 
 # Install full LaTeX stack for PDF rendering
 RUN apt update && apt install -y \
+    lmodern \
+    texlive \
     texlive-luatex
+
+USER $NB_UID
