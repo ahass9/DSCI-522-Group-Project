@@ -3,6 +3,9 @@ Feature Preprocessing
 
 This script loads the train and test data, applies feature preprocessing
 which includes scaling for numeric features and onehotencoding for categorical and binary features.
+
+NEW CHANGE: Used a general function to apply feature preprocessing.
+
 It saves transformed feature and target training and test sets separately, to be used later
 for model fitting evaluation.
 """
@@ -12,6 +15,10 @@ import pandas as pd
 import pickle
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.compose import make_column_transformer
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+from src.preprocessor import create_preprocessor
 
 
 @click.command()
@@ -74,12 +81,15 @@ def preprocess_features(train_input_path,test_input_path,x_train_transformed_out
     cat_features = ["reserved_room_type", "deposit_type"]
     binary_features = ['is_repeated_guest']
 
-    # Defining transformations in column transformer
-    preprocessor = make_column_transformer(
-        (StandardScaler(), num_features),
-        ("passthrough", binary_features),
-        (OneHotEncoder(handle_unknown="ignore"), cat_features))
-
+    # # Defining transformations in column transformer
+    # preprocessor = make_column_transformer(
+    #     (StandardScaler(), num_features),
+    #     ("passthrough", binary_features),
+    #     (OneHotEncoder(handle_unknown="ignore"), cat_features))
+    
+    # Use the function for Milestone 4 instead
+    preprocessor = create_preprocessor(num_features, cat_features, binary_features)
+    
     X_train_processed = preprocessor.fit_transform(X_train)
     X_test_processed = preprocessor.transform(X_test)
 
