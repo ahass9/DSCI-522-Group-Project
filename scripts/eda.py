@@ -11,6 +11,10 @@ import click
 import matplotlib.pyplot as plt
 import altair as alt
 import numpy as np
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+from src.eda_barplot import create_barplot
 
 alt.data_transformers.disable_max_rows()
 
@@ -55,22 +59,10 @@ def create_eda_plot(input_path, figure_prefix):
     plt.close()
     click.echo(f"Correlation matrix of numerical features saved!")
 
-    target_dist = alt.Chart(data).mark_bar().encode(
-        x='is_canceled:N',
-        y='count()'
-    ).properties(width=300, height=250)
-
-    target_dist.save(f"{figure_prefix}_target_var_distribution.png")
-
+    create_barplot(data,x_col="is_canceled",output_path=f"{figure_prefix}_target_var_distribution.png")
     click.echo(f" Bar chart of target variable (hotel cancellations) counts  saved!")
 
-    target_dist_hotel_type = alt.Chart(data).mark_bar().encode(
-        x='hotel:N',
-        y='count()',
-        color='is_canceled:N'
-    ).properties(width=300, height=250)
-
-    target_dist_hotel_type.save(f"{figure_prefix}_hotel_vs_cancellations.png")
+    create_barplot(data,x_col="hotel",color_col="is_canceled",output_path=f"{figure_prefix}_hotel_vs_cancellations.png")
     click.echo('Bar Chart of distribution of cancellations across hotel types saved!')
 
     lead_time_plot = alt.Chart(data).transform_density(
@@ -86,32 +78,14 @@ def create_eda_plot(input_path, figure_prefix):
     lead_time_plot.save(f"{figure_prefix}_lead_time_density.png")
     click.echo('Lead time density plot across cancellation classes saved!')
 
-    repeated_guest = alt.Chart(data[['is_repeated_guest', 'deposit_type', 'reserved_room_type', 'is_canceled']]).mark_bar().encode(
-        x='is_repeated_guest:N', 
-        y='count()',
-        color='is_canceled:N'
-        ).properties(width=250)
-
-    repeated_guest.save(f"{figure_prefix}_repeated_guest_vs_cancellations_count.png")
+    create_barplot(data,x_col="is_repeated_guest",color_col="is_canceled",output_path=f"{figure_prefix}_repeated_guest_vs_cancellations_count.png")
     click.echo('Bar chart of repeat guest counts vs cancellations saved!')
 
-    deposit_type = alt.Chart(data).mark_bar().encode(
-        x='deposit_type:N',
-        y='count()',
-        color='is_canceled:N'
-        ).properties(width=250)
-    
-    deposit_type.save(f"{figure_prefix}_deposit_type_vs_cancellations_count.png")
+    create_barplot(data,x_col="deposit_type",color_col="is_canceled",output_path=f"{figure_prefix}_deposit_type_vs_cancellations_count.png")
     click.echo("Bar chart of deposit type vs cancellations saved!")
 
 
-    room_type = alt.Chart(data).mark_bar().encode(
-        x='reserved_room_type:N',
-        y='count()',
-        color='is_canceled:N'
-        ).properties(width=250)
-    
-    room_type.save(f"{figure_prefix}_reserved_room_type_vs_cancellations.png")
+    create_barplot(data,x_col="reserved_room_type",color_col="is_canceled",output_path=f"{figure_prefix}_reserved_room_type_vs_cancellations.png")
     click.echo("Bar chart of reserved room type vs cancellations saved!")
 
 if __name__ == '__main__':
