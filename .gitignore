@@ -7,3 +7,5 @@
 .ipython/
 
 /.quarto/
+
+**/*.quarto_ipynb

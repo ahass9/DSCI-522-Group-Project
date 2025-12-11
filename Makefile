@@ -140,8 +140,8 @@ clean-tables:
 	rm -f results/tables/*.csv
 
 clean-all: clean-dats clean-figs clean-models clean-tables
-	rm -f reports/hotel_cancellation_classification_analysis.html \
-	reports/hotel_cancellation_classification_analysis.pdf 
+	rm -f docs/reports/hotel_cancellation_classification_analysis.html \
+	docs/reports/hotel_cancellation_classification_analysis.pdf 
 	rm -rf reports/hotel_cancellation_classification_analysis_files
 
 
