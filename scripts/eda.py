@@ -91,5 +91,32 @@ def create_eda_plot(input_path, figure_prefix):
 if __name__ == '__main__':
     create_eda_plot()
 
+def compute_numeric_correlation(df: pd.DataFrame, method: str = "pearson") -> pd.DataFrame:
+    """
+    Compute a correlation matrix for numeric features in a dataframe.
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        Input dataframe
+    method : str, default="pearson"
+        Correlation method ("pearson", "spearman", "kendall")
+
+    Returns
+    -------
+    pd.DataFrame
+        Correlation matrix of numeric features
+    """
+    if not isinstance(df, pd.DataFrame):
+        raise TypeError("Input must be a pandas DataFrame")
+
+    numeric_df = df.select_dtypes(include="number")
+
+    if numeric_df.shape[1] < 2:
+        raise ValueError("DataFrame must contain at least two numeric columns")
+
+    return numeric_df.corr(method=method)
+
+
 
 
