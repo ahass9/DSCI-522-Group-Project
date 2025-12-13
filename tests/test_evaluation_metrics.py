@@ -15,7 +15,7 @@ import sys
 import os
 
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
-from src.model_evaluation import evaluation_metrics
+from src.evaluation_metrics import evaluation_metrics
 
 
 # expected
@@ -31,6 +31,7 @@ def test_evaluation_metrics_basic_correct_output():
     y_test = np.array([0, 0, 1, 1])
 
     model = KNeighborsClassifier(n_neighbors=1)
+    model.fit(X_test, y_test)
 
     metrics = evaluation_metrics(model, X_test, y_test)
 
@@ -126,6 +127,7 @@ def test_evaluation_metrics_with_list_labels():
     y_test = [0, 0, 1, 1]  # list, not np.array
 
     model = KNeighborsClassifier(n_neighbors=1)
+    model.fit(X_test, y_test)
 
     metrics = evaluation_metrics(model, X_test, y_test)
 
@@ -148,6 +150,7 @@ def test_evaluation_metrics_minimum_valid_size():
     y_test = np.array([0, 1])
 
     model = KNeighborsClassifier(n_neighbors=1)
+    model.fit(X_test, y_test)
 
     metrics = evaluation_metrics(model, X_test, y_test)
 

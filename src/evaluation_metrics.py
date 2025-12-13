@@ -1,11 +1,19 @@
+"""
+Compute evaluation metrics for a fitted binary classification model.
+
+This function assumes the provided model has already been fitted and
+computes accuracy, confusion matrix values, ROC curve (FPR and TPR),
+and AUC score on the given test data.
+
+"""
+
 from typing import Any, Dict
 
 from sklearn.metrics import (
     accuracy_score,
     confusion_matrix,
     roc_curve,
-    roc_auc_score,
-)
+    roc_auc_score)
 
 
 def evaluation_metrics(model: Any, X_test, y_test) -> Dict[str, Any]:
@@ -64,11 +72,7 @@ def evaluation_metrics(model: Any, X_test, y_test) -> Dict[str, Any]:
       raise ValueError("X_test and y_test must have the same number of rows.")
 
     if not hasattr(model, "fit") or not hasattr(model, "predict") or not hasattr(model, "predict_proba"):
-     raise ValueError(
-       "Model must implement 'fit', 'predict', and 'predict_proba' methods."
-       )
-
-    model.fit(X_test, y_test)
+     raise ValueError("Model must implement 'fit', 'predict', and 'predict_proba' methods.")
 
     y_pred = model.predict(X_test)
     y_proba = model.predict_proba(X_test)[:, 1]
@@ -85,5 +89,4 @@ def evaluation_metrics(model: Any, X_test, y_test) -> Dict[str, Any]:
         "tpr": tpr,
         "auc": auc,
         "y_pred": y_pred,
-        "y_proba": y_proba,
-    }
+        "y_proba": y_proba}

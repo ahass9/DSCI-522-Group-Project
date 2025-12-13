@@ -15,10 +15,13 @@ import os
 import click
 import pandas as pd
 import matplotlib.pyplot as plt
-from src.evaluation_metrics import evaluation_metrics
-
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import ConfusionMatrixDisplay
+
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+from src.evaluation_metrics import evaluation_metrics
 
 
 @click.command()
