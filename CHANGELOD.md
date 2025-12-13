@@ -34,4 +34,4 @@ only environment.yml and conda lock files [Commit URL](https://github.com/ahass9
 
 - added jupyter lab as dependency as per TA feedback [Commit URL](https://github.com/ahass9/DSCI-522-Group-Project/commit/07584d365f419282e0ec0bb4216ade67231630ee)
 
-URL to peer review issue: (Peer Review MDS github issue)[https://github.com/UBC-MDS/data-analysis-review-2025/issues/7]
+URL to peer review issue: [Peer Review MDS github issue](https://github.com/UBC-MDS/data-analysis-review-2025/issues/7)
