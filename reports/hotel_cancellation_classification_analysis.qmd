@@ -22,23 +22,23 @@ execute:
 bibliography: references.bib
 ---
 
-## Summary
+# Summary
 
 In this project we worked with an open hotel booking dataset containing reservations for both city and resort hotels and we selected a smaller set of features that would realistically be available at the time of booking, such as lead time, whether the guest is a repeat customer, previous cancellations, booking changes, special requests, reserved room type and deposit type. After a brief exploratory analysis, we confirmed that cancellations are fairly common and that patterns differ across hotel types and booking conditions, especially for repeated guests and deposit policies. We then framed the problem as a binary classification task: predict whether a booking will be cancelled or not. The data was split into training and test sets, and we built pipelines that combined preprocessing with three models: K-Nearest Neighbours, a Decision Tree and an RBF-kernel SVM.
 
 Using 5-fold cross validation with F1 score on the validation set, KNN gave the best performance, so we chose it as our final model and evaluated it on the unseen test data. On the test set, our KNN model performs well enough with an accuracy of 73% and we concluded that it could plausibly support day-to-day hotel operations, at least as a first-pass tool for flagging higher-risk bookings. The confusion matrix shows that the model correctly identifies most non-cancellations and captures a reasonable portion of true cancellations, even though it still misses some risky bookings. That said, we do not see it as a finished solution. There is clear value in extending the feature set, tuning the model more carefully, and examining in detail which types of reservations are consistently mis-classified. This would not only improve raw performance, but also give hotels a better sense of when to rely on the model’s predictions and when they should be treated as one input alongside staff experience and existing booking policies.
 
-## Introduction
+# Introduction
 
 Free cancellations for hotel bookings are increasingly popular nowadays, but cancellations create significant impact on a hotel's revenue and operation. Predicting whether a reservation will be canceled can help hotels manage resources more effectively, reduce lost revenue, and improve customer service. There has been a rise in the research conducted on predicting hotel cancellations using machine learning models in order to improve strategies for revenue management [@sanchez2020; @antonio2017]. In our project, we aim to answer the question "Can we build a model that accurately predicts whether a hotel booking will be canceled?" This will be a binary classification problem, where each booking is labeled as either “canceled” or “not canceled”.
 
 To explore this, we used a publicly available dataset from [GitHub](https://raw.githubusercontent.com/manthangandhi/hotel_cancellation_prediction/refs/heads/main/data/hotel_bookings.csv). The dataset contains information about hotel reservations, and the label column is called "IsCanceled", which indicates whether a booking was canceled or not. One of the important features is "Lead Time", showing how many days passed between the booking date and the arrival date. Some other important features include deposit type, is_repeated_guest and booking_changes, which are all helpful for our classification model and have been used in previous work done that has also conducted predictive modeling on hotel cancelations [@antonio2019_dataset].
 
-## Question of Interest
+# Question of Interest
+Since the dataset contains many features (32 in total), we chose to examine a subset of these in order to focus our research question to the following:
+**Can we predict hotel cancellations from booking lead time and different types of guest behaviors, using hotel booking information from the year 2017? And do cancellations differ across hotel type?**
 
-Since the dataset contains many features (32 in total), we chose to examine a subset of these in order to focus our research question to the following: **Can we predict hotel cancellations from booking lead time and different types of guest behaviors, using hotel booking information from the year 2017? And do cancellations differ across hotel type?**
-
-## Methods
+# Methods
 
 ## Data
 
@@ -76,7 +76,7 @@ One small but notable pattern is the slight negative correlation between total_o
 ::::::
 :::::::
 
-## Discussion of Results
+# Results & Discussion
 
 ```{python}
 #| echo: false

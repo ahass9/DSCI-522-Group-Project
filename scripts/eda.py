@@ -56,33 +56,47 @@ def create_eda_plot(input_path, figure_prefix):
 
     click.echo("Correlation matrix of numerical features saved!")
 
-    create_barplot(data,x_col="is_canceled",output_path=f"{figure_prefix}_target_var_distribution.png")
+    create_barplot(data, x_col="is_canceled", x_title="Cancellations",
+                   title="Distribution of Hotel Booking Cancellations", 
+                   output_path=f"{figure_prefix}_target_var_distribution.png")
     click.echo(f" Bar chart of target variable (hotel cancellations) counts  saved!")
 
-    create_barplot(data,x_col="hotel",color_col="is_canceled",output_path=f"{figure_prefix}_hotel_vs_cancellations.png")
+    create_barplot(data, x_col="hotel", color_col="is_canceled", x_title="Hotel Type", color_title="Cancellations", 
+                   title="Hotel Type vs Cancellations",
+                   output_path=f"{figure_prefix}_hotel_vs_cancellations.png")
     click.echo('Bar Chart of distribution of cancellations across hotel types saved!')
 
     lead_time_plot = alt.Chart(data).transform_density(
-    'lead_time',
+        'lead_time',
         groupby= ['is_canceled'],
         as_=['lead_time', 'density'],
         ).mark_area().encode(
-        x="lead_time:Q",
-        y='density:Q',
-        color='is_canceled:N'
-        )
-
+            x=alt.X("lead_time:Q", title="Lead Time (days)"),
+            y=alt.Y("density:Q", title="Density"),
+            color=alt.Color("is_canceled:N", title="Cancellations"),
+        ).properties(title="Lead Time Density by Cancellation Status") 
+    
+    
     lead_time_plot.save(f"{figure_prefix}_lead_time_density.png")
     click.echo('Lead time density plot across cancellation classes saved!')
 
-    create_barplot(data,x_col="is_repeated_guest",color_col="is_canceled",output_path=f"{figure_prefix}_repeated_guest_vs_cancellations_count.png")
+    create_barplot(data, x_col="is_repeated_guest", color_col="is_canceled",
+                   x_title="Whether a Repeated Guest", color_title="Cancellations",
+                   title="Repeated Guests vs Cancellations",
+                   output_path=f"{figure_prefix}_repeated_guest_vs_cancellations_count.png")
     click.echo('Bar chart of repeat guest counts vs cancellations saved!')
 
-    create_barplot(data,x_col="deposit_type",color_col="is_canceled",output_path=f"{figure_prefix}_deposit_type_vs_cancellations_count.png")
+    create_barplot(data, x_col="deposit_type", color_col="is_canceled",
+                   x_title="Deposit Type", color_title="Cancellations",
+                   title="Deposit Type vs Cancellations",
+                   output_path=f"{figure_prefix}_deposit_type_vs_cancellations_count.png")
     click.echo("Bar chart of deposit type vs cancellations saved!")
 
 
-    create_barplot(data,x_col="reserved_room_type",color_col="is_canceled",output_path=f"{figure_prefix}_reserved_room_type_vs_cancellations.png")
+    create_barplot(data, x_col="reserved_room_type", color_col="is_canceled",
+                   x_title="Reserved Room Type", color_title="Cancellations",
+                   title="Reserved Room Type vs Cancellations",
+                   output_path=f"{figure_prefix}_reserved_room_type_vs_cancellations.png")
     click.echo("Bar chart of reserved room type vs cancellations saved!")
 
 if __name__ == '__main__':
