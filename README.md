@@ -14,6 +14,10 @@ Since the dataset contains many features (32 in total), we chose to examine a su
 
 **Can we predict hotel cancellations from booking lead time and different types of guest behaviors, using hotel booking information from the year 2017? And do cancellations differ across hotel type?**
 
+### Report
+
+The final Report can be found here: [Project Report](https://ahass9.github.io/DSCI-522-Group-Project/)
+
 ### Usage (how to run data analysis):
 
 #### First-time setup
