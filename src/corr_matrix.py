@@ -1,14 +1,23 @@
+"""
+Correlation matrix for numeric features
+
+This function uses the numeric features in a given dataframe and generates a pairwise
+correlation matrix plot.
+"""
+
+
 import pandas as pd
 import matplotlib.pyplot as plt
-import seaborn as sns
 
 
 def compute_numeric_correlation(
     df: pd.DataFrame,
     method: str = "pearson",
     figsize: tuple = (10, 8),
-    annot: bool = False
-) -> pd.DataFrame:
+    cmap: str = "RdYlGn",
+    vmin: float = -1.0,
+    vmax: float = 1.0,
+    output_path = None) -> pd.DataFrame:
     """
     Compute and plot a correlation matrix for numeric features in a dataframe.
 
@@ -36,21 +45,18 @@ def compute_numeric_correlation(
     if numeric_df.shape[1] < 2:
         raise ValueError("DataFrame must contain at least two numeric columns")
 
-    corr_matrix = numeric_df.corr(method=method)
+    corr = numeric_df.corr(method=method)
 
     # Plot
-    plt.figure(figsize=figsize)
-    sns.heatmap(
-        corr_matrix,
-        cmap="coolwarm",
-        center=0,
-        square=True,
-        annot=annot,
-        fmt=".2f",
-        cbar_kws={"shrink": 0.8}
-    )
-    plt.title(f"{method.capitalize()} Correlation Matrix")
-    plt.tight_layout()
-    plt.show()
+    if output_path is not None:
+        plt.figure(figsize=figsize)
+        im = plt.imshow(corr, cmap=cmap, vmin=vmin, vmax=vmax)
+        plt.colorbar(im)
+        plt.title("Correlation Matrix")
+        plt.xticks(range(len(corr.columns)), corr.columns, rotation=90)
+        plt.yticks(range(len(corr.columns)), corr.columns)
+        plt.tight_layout()
+        plt.savefig(output_path)
+        plt.close()
 
-    return corr_matrix
+    return corr

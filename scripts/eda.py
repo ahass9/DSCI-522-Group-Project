@@ -12,10 +12,12 @@ import matplotlib.pyplot as plt
 import altair as alt
 import numpy as np
 import sys
-import seaborn as sns
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+from src.corr_matrix import compute_numeric_correlation
 from src.eda_barplot import create_barplot
+
+
 
 alt.data_transformers.disable_max_rows()
 
@@ -47,16 +49,11 @@ def create_eda_plot(input_path, figure_prefix):
 
     data = pd.read_csv(input_path) #training data only
 
-    from src.corr_matrix import compute_numeric_correlation
-
-    corr = compute_numeric_correlation(
+    compute_numeric_correlation(
         data,
-        method="pearson",
-        annot=False
-    )
-    
-    plt.savefig(f"{figure_prefix}_correlation_matrix.png")
-    plt.close()
+        method="pearson", 
+        output_path=f"{figure_prefix}_correlation_matrix.png")
+
     click.echo("Correlation matrix of numerical features saved!")
 
     create_barplot(data,x_col="is_canceled",output_path=f"{figure_prefix}_target_var_distribution.png")
