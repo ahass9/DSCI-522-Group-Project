@@ -76,6 +76,7 @@ def create_eda_plot(input_path, figure_prefix):
             color=alt.Color("is_canceled:N", title="Cancellations"),
         ).properties(title="Lead Time Density by Cancellation Status") 
     
+    
     lead_time_plot.save(f"{figure_prefix}_lead_time_density.png")
     click.echo('Lead time density plot across cancellation classes saved!')
 
