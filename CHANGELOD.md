@@ -28,8 +28,6 @@ only environment.yml and conda lock files [Commit URL](https://github.com/ahass9
 
 ### Fixed (TA feedback: Milestone 1)
 
-- Repository name changed to be meaningful to project topic. See previous version (insert link) vs version for Milestone 4 with updated repository name (insert link) **this was also a feedback suggestion given from the Peer review
-
 - removed unnecessary files such as ipynb_checkpoints and .DS_STORE. Added to gitignore. See link in the above section.
 
 - added jupyter lab as dependency as per TA feedback [Commit URL](https://github.com/ahass9/DSCI-522-Group-Project/commit/07584d365f419282e0ec0bb4216ade67231630ee)
