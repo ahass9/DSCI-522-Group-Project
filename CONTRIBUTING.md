@@ -5,6 +5,15 @@ helps, and credit will always be given.
 
 ## Types of Contributions
 
+### Adding Dependencies
+
+1. Create a new branch and add the dependency to environment.yml.
+2. Regenerate the Linux lock file by running ```conda-lock -k explicit --file environment.yml -p linux-64```.
+3. Build the Docker image locally to confirm it builds successfully and runs as expected.
+4. Push your branch to GitHub. This will automatically trigger a new Docker image build and push it to Docker Hub, tagged with the commit SHA.
+5. Verify in GitHub Actions that the Docker image build completed successfully.
+6. Open a pull request to merge your changes into the ```main``` branch.
+
 ### Report Bugs
 
 If you are reporting a bug, please include:
