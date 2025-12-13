@@ -127,4 +127,4 @@ The AUC value of 0.79 provides a concise summary of this performance. An AUC of 
 
 In overall, the KNN model provides a **useful starting point** for predicting hotel booking cancellations. It clearly outperforms a simple majority baseline, correctly identifies most non-cancellations and captures a meaningful portion of actual cancellations. With additional tuning, more features and a more careful treatment of missing values and thresholds, this approach could be developed into a practical decision support tool to help hotels manage overbooking strategies, communicate proactively with high-risk guests and reduce the last minute revenue losses.
 
-## References
+# References
