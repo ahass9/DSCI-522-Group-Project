@@ -6,9 +6,9 @@ All additions and changes made by our team are documented in this project issue:
 
 ### Added (Peer Feedback)
 
-- Added project question to summary section of README file. [PR URL](https://github.com/ahass9/DSCI-522-Group-Project/pull/50)[Commit URL](https://github.com/ahass9/DSCI-522-Group-Project/pull/50/commits/4c9fd9d9e1d9dbefb8e574f1cc2d568105b5577f)
+- Added project question to summary section of README file. [PR URL](https://github.com/ahass9/DSCI-522-Group-Project/pull/50), [Commit URL](https://github.com/ahass9/DSCI-522-Group-Project/pull/50/commits/4c9fd9d9e1d9dbefb8e574f1cc2d568105b5577f)
 
-- Added explanation for the legend of ROC curve. More clarity provided on what the lines are actually displaying. [PR URL](<https://github.com/ahass9/DSCI-522-Group-Project/pull/50)[Commit URL](https://github.com/ahass9/DSCI-522-Group-Project/pull/50/commits/4c9fd9d9e1d9dbefb8e574f1cc2d568105b5577f)
+- Added explanation for the legend of ROC curve. More clarity provided on what the lines are actually displaying. [PR URL](https://github.com/ahass9/DSCI-522-Group-Project/pull/50), [Commit URL](https://github.com/ahass9/DSCI-522-Group-Project/pull/50/commits/4c9fd9d9e1d9dbefb8e574f1cc2d568105b5577f)
 
 - Added more human readable titles in plots. [PR URL](https://github.com/ahass9/DSCI-522-Group-Project/pull/54), [Commit URL](https://github.com/ahass9/DSCI-522-Group-Project/pull/54/commits/a23f075da13684fc44a73519884964f78d939ce0)
 
