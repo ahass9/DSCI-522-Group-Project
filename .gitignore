@@ -9,3 +9,9 @@
 /.quarto/
 
 **/*.quarto_ipynb
+
+__pycache__/
+*.pyc
+
+# Quarto / Pandoc intermediate files
+reports/*_files/
