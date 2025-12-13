@@ -1,3 +1,11 @@
+"""
+Creating a barplot for a categorical variable
+
+This function takes a dataframe, a column name corresponding to a categorical variable, returning
+an altair bar chart showing the count of observations. It also takes an optional color column to be 
+mapped onto the color encoding if needed.
+"""
+
 import os
 import pandas as pd
 import altair as alt
