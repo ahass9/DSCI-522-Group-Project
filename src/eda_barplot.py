@@ -62,7 +62,10 @@ def create_barplot(df, x_col, color_col=None, x_title=None,
     chart = (alt.Chart(df)
             .mark_bar()
             .encode(**encoding)
-            .properties(width=300, height=250, title=title))
+            .properties(width=300, height=250))
+    
+    if title is not None:
+        chart = chart.properties(title=title)
 
     if output_path:
         os.makedirs(os.path.dirname(output_path), exist_ok=True)
