@@ -15,15 +15,13 @@ import os
 import click
 import pandas as pd
 import matplotlib.pyplot as plt
-
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import (
-    accuracy_score,
-    confusion_matrix,
-    roc_curve,
-    roc_auc_score,
-    ConfusionMatrixDisplay,
-)
+from sklearn.metrics import ConfusionMatrixDisplay
+
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+from src.evaluation_metrics import evaluation_metrics
 
 
 @click.command()
@@ -100,18 +98,21 @@ def model_results(
     y_train = pd.read_csv(y_train_path).squeeze("columns")
     y_test = pd.read_csv(y_test_path).squeeze("columns")
 
-    # ----- Define and fit KNN (k=15) -----
+    # ----- Define and fit KNN (k=15) on training data -----
     knn = KNeighborsClassifier(n_neighbors=15)
     knn.fit(X_train, y_train)
 
-    # ----- Predictions and metrics -----
-    y_pred = knn.predict(X_test)
-    y_proba = knn.predict_proba(X_test)[:, 1]
+    # ----- Use evaluation_metrics to compute metrics on the test set -----
+    metrics = evaluation_metrics(knn, X_test, y_test)
 
-    test_accuracy = accuracy_score(y_test, y_pred)
-    cm = confusion_matrix(y_test, y_pred)
-    fpr, tpr, _ = roc_curve(y_test, y_proba)
-    auc = roc_auc_score(y_test, y_proba)
+    test_accuracy = metrics["accuracy"]
+    cm = metrics["confusion_matrix"]
+    fpr = metrics["fpr"]
+    tpr = metrics["tpr"]
+    auc = metrics["auc"]
+    # y_pred and y_proba are available too if you ever need them:
+    # y_pred = metrics["y_pred"]
+    # y_proba = metrics["y_proba"]
 
     # ----- Save test accuracy as CSV -----
     ensure_dir(metrics_output_path)
