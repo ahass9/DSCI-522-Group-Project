@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.8.21">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -57,10 +57,10 @@ div.csl-indent {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ea1d7ac60288e0f1efdbc993fd8432ae.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-3906a769cb48dc3223fd9b7e828ec842.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-ff63373b1067ca6f91cf1456aa1f00a2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -107,11 +107,15 @@ div.csl-indent {
   <li><a href="#summary" id="toc-summary" class="nav-link active" data-scroll-target="#summary"><span class="header-section-number">1</span> Summary</a></li>
   <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="header-section-number">2</span> Introduction</a></li>
   <li><a href="#question-of-interest" id="toc-question-of-interest" class="nav-link" data-scroll-target="#question-of-interest"><span class="header-section-number">3</span> Question of Interest</a></li>
-  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods"><span class="header-section-number">4</span> Methods</a></li>
-  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data"><span class="header-section-number">5</span> Data</a></li>
-  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis"><span class="header-section-number">6</span> Analysis</a></li>
-  <li><a href="#discussion-of-results" id="toc-discussion-of-results" class="nav-link" data-scroll-target="#discussion-of-results"><span class="header-section-number">7</span> Discussion of Results</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">8</span> References</a></li>
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods"><span class="header-section-number">4</span> Methods</a>
+  <ul class="collapse">
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data"><span class="header-section-number">4.1</span> Data</a></li>
+  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis"><span class="header-section-number">4.2</span> Analysis</a></li>
+  </ul></li>
+  <li><a href="#results-discussion" id="toc-results-discussion" class="nav-link" data-scroll-target="#results-discussion"><span class="header-section-number">5</span> Results &amp; Discussion</a>
+  <ul class="collapse">
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">5.1</span> References</a></li>
+  </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="hotel_cancellation_classification_analysis.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
@@ -143,31 +147,30 @@ div.csl-indent {
 </header>
 
 
-<section id="summary" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="summary"><span class="header-section-number">1</span> Summary</h2>
+<section id="summary" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Summary</h1>
 <p>In this project we worked with an open hotel booking dataset containing reservations for both city and resort hotels and we selected a smaller set of features that would realistically be available at the time of booking, such as lead time, whether the guest is a repeat customer, previous cancellations, booking changes, special requests, reserved room type and deposit type. After a brief exploratory analysis, we confirmed that cancellations are fairly common and that patterns differ across hotel types and booking conditions, especially for repeated guests and deposit policies. We then framed the problem as a binary classification task: predict whether a booking will be cancelled or not. The data was split into training and test sets, and we built pipelines that combined preprocessing with three models: K-Nearest Neighbours, a Decision Tree and an RBF-kernel SVM.</p>
 <p>Using 5-fold cross validation with F1 score on the validation set, KNN gave the best performance, so we chose it as our final model and evaluated it on the unseen test data. On the test set, our KNN model performs well enough with an accuracy of 73% and we concluded that it could plausibly support day-to-day hotel operations, at least as a first-pass tool for flagging higher-risk bookings. The confusion matrix shows that the model correctly identifies most non-cancellations and captures a reasonable portion of true cancellations, even though it still misses some risky bookings. That said, we do not see it as a finished solution. There is clear value in extending the feature set, tuning the model more carefully, and examining in detail which types of reservations are consistently mis-classified. This would not only improve raw performance, but also give hotels a better sense of when to rely on the model’s predictions and when they should be treated as one input alongside staff experience and existing booking policies.</p>
 </section>
-<section id="introduction" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="introduction"><span class="header-section-number">2</span> Introduction</h2>
+<section id="introduction" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Introduction</h1>
 <p>Free cancellations for hotel bookings are increasingly popular nowadays, but cancellations create significant impact on a hotel’s revenue and operation. Predicting whether a reservation will be canceled can help hotels manage resources more effectively, reduce lost revenue, and improve customer service. There has been a rise in the research conducted on predicting hotel cancellations using machine learning models in order to improve strategies for revenue management <span class="citation" data-cites="sanchez2020 antonio2017">(<a href="#ref-sanchez2020" role="doc-biblioref">Sánchez, Sánchez-Medina, and Pellejero 2020</a>; <a href="#ref-antonio2017" role="doc-biblioref">Antonio, Almeida, and Nunes 2017</a>)</span>. In our project, we aim to answer the question “Can we build a model that accurately predicts whether a hotel booking will be canceled?” This will be a binary classification problem, where each booking is labeled as either “canceled” or “not canceled”.</p>
 <p>To explore this, we used a publicly available dataset from <a href="https://raw.githubusercontent.com/manthangandhi/hotel_cancellation_prediction/refs/heads/main/data/hotel_bookings.csv">GitHub</a>. The dataset contains information about hotel reservations, and the label column is called “IsCanceled”, which indicates whether a booking was canceled or not. One of the important features is “Lead Time”, showing how many days passed between the booking date and the arrival date. Some other important features include deposit type, is_repeated_guest and booking_changes, which are all helpful for our classification model and have been used in previous work done that has also conducted predictive modeling on hotel cancelations <span class="citation" data-cites="antonio2019_dataset">(<a href="#ref-antonio2019_dataset" role="doc-biblioref">Antonio, Almeida, and Nunes 2019</a>)</span>.</p>
 </section>
-<section id="question-of-interest" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="question-of-interest"><span class="header-section-number">3</span> Question of Interest</h2>
+<section id="question-of-interest" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Question of Interest</h1>
 <p>Since the dataset contains many features (32 in total), we chose to examine a subset of these in order to focus our research question to the following: <strong>Can we predict hotel cancellations from booking lead time and different types of guest behaviors, using hotel booking information from the year 2017? And do cancellations differ across hotel type?</strong></p>
 </section>
-<section id="methods" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="methods"><span class="header-section-number">4</span> Methods</h2>
-</section>
-<section id="data" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="data"><span class="header-section-number">5</span> Data</h2>
+<section id="methods" class="level1 page-columns page-full" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Methods</h1>
+<section id="data" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="data"><span class="header-section-number">4.1</span> Data</h2>
 <p>We began by cleaning the dataset and selecting the columns that we considered most useful for our research question. Our analysis depends on the following columns as predictors: hotel, is_canceled, lead_time, previous_cancellations,previous_bookings_not_canceled, booking_changes,total_of_special_requests, is_repeated_guest, deposit_type and reserved_room_type.</p>
 <p>To ensure quality and integrity of the data prior to modelling, we used the pandera package to conduct a series of validation checks. These checks enforced correct column name and column types, valid category levels and numerical bounds for our predictor variables. We then performed exploratory data analysis (EDA) to examine the distribution of our predictor variables across different levels of our target variable, ‘is_canceled’.</p>
 <p>For predictive modeling, we conducted cross validation on 3 different models: KNN, SVM RBF and Decision trees, using our training data. The best performing model (KNN) was then evaluated on the test set to assess whether it generalizes well to unseen data and evaluate how well it was able to correctly predict guests that cancel their hotel reservations versus those who do not.Since the entire dataset is quite large, we’ll be focusing on hotel data from the most recent year, the year 2017, to make predictions about hotel cancellations (as per the research question).</p>
 </section>
-<section id="analysis" class="level2 page-columns page-full" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="analysis"><span class="header-section-number">6</span> Analysis</h2>
+<section id="analysis" class="level2 page-columns page-full" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="analysis"><span class="header-section-number">4.2</span> Analysis</h2>
 <p>The correlation matrix (<a href="#fig-corrmatrix" class="quarto-xref">Figure&nbsp;1</a>) helped us assess how our selected numerical features relate to one another and to the target variable, is_canceled. Overall, the matrix shows that most predictors have only weak linear relationships with cancellations, which suggests that no single booking feature is strongly determinant on its own. This aligns with our expectation that cancellation behavior is influenced by several interacting factors rather than a single dominant one. We do, however, observe some stronger correlations among the guest history features: lead_time, previous_cancellations, and previous_bookings_not_canceled are highly related, reflecting that guests with long booking horizons tend to be more frequent travelers with greater booking histories. These relationships are not necessarily indicative of cancellation risk themselves, but they confirmed that our predictor set contains overlapping behavioral signals that the model will need to note.</p>
 <div class="center">
 <div id="fig-corrmatrix" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -202,8 +205,9 @@ Figure&nbsp;2: EDA bar plots: Reserved Room Type, Repeated Guest Status, and Dep
 </figure>
 </div>
 </section>
-<section id="discussion-of-results" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="discussion-of-results"><span class="header-section-number">7</span> Discussion of Results</h2>
+</section>
+<section id="results-discussion" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Results &amp; Discussion</h1>
 <p>With this project, our primary goal was to predict the whether a hotel booking would eventually end up being cancelled, using information that is available at the time of booking including lead time, deposit type, room type and whether the guest is a repeat customer etc. The idea is that a reasonably accurate model could help hotel businesses flag high-risk bookings and adjust their policies or communication before the stay date.</p>
 <p>For the purpose of getting the best model to do this prediction, we compared three classification models using 5-fold cross validation on the training set, with F1 score (for the cancellation class) as the main metric, <strong>K-Nearest Neighbours (KNN, k = 15), Decision Tree (max_depth = 6), and RBF-kernel SVM (C = 1.0, gamma = “scale”).</strong> After scoring their mean F1 scores on the training folds, the F1 score results were: F1 = 0.602 for KNN, F1= 0.57 for Decision Tree and F1=0.526 for RBF SVM. KNN clearly performed best on this metric, and also consistently across the folds with the least standard deviations. Because our main concern is to correctly identify cancellations rather than just overall accuracy, we chose <strong>KNN</strong> as the final model for evaluation on the test set.</p>
 <div class="center">
@@ -218,7 +222,7 @@ Figure&nbsp;3: KNN Confusion Matrix
 </figure>
 </div>
 </div>
-<p>As shown in <a href="#fig-knnconfusion" class="quarto-xref">Figure&nbsp;3</a>, the KNN model achieved an accuracy of 0.731. Other stats are as follows:</p>
+<p>As shown in <a href="#fig-knnconfusion" class="quarto-xref">Figure&nbsp;3</a>, the KNN model achieved an accuracy of 0.732. Other stats are as follows:</p>
 <ul>
 <li>Cancellation Precision ≈ 0.70</li>
 <li>Cancellation Recall ≈ 0.53</li>
@@ -241,7 +245,7 @@ Figure&nbsp;4: ROC Curve for the KNN Model
 </figure>
 </div>
 </div>
-<p>The ROC curve for the KNN model, <a href="#fig-knnroc" class="quarto-xref">Figure&nbsp;4</a>, shows how well the classifier can distinguish between cancelled and non-cancelled bookings across all possible classification thresholds. The curve rises well above the diagonal baseline, indicating that the model performs substantially better than random guessing. At lower false positive rates, the true positive rate increases steadily, suggesting that the model can identify a meaningful proportion of cancellations even when constrained to make very few false alarms. The curve becomes steeper as the threshold relaxes, reflecting that the model captures more cancellations at the cost of some additional false positives—a trade-off that is expected in this type of classification problem.</p>
+<p>The ROC curve for the KNN model, <a href="#fig-knnroc" class="quarto-xref">Figure&nbsp;4</a>, shows how well the classifier can distinguish between cancelled and non-cancelled bookings across all possible classification thresholds. The curve rises well above the diagonal baseline, indicating that the model performs substantially better than random guessing. At lower false positive rates, the true positive rate increases steadily, suggesting that the model can identify a meaningful proportion of cancellations even when constrained to make very few false alarms. The curve becomes steeper as the threshold relaxes, reflecting that the model captures more cancellations at the cost of some additional false positives—a trade-off that is expected in this type of classification problem. The dotted line in the ROC curve represents the baseline of random guessing, where the true positive rate equals the false positive rate. Here, it can serve as a reference to show how much better our model performs compared to chance.</p>
 <p>The AUC value of 0.79 provides a concise summary of this performance. An AUC of 0.79 indicates good discriminatory ability, meaning that in roughly 79% of random pairings between a canceled and a non-canceled booking, the model assigns a higher cancellation probability to the canceled booking. Although this is not exceptionally high, it is noticeably stronger than a naive baseline and aligns with the F1 and accuracy scores observed in earlier evaluations. Overall, the ROC curve reinforces that the KNN model captures meaningful patterns in guest behavior and booking characteristics, even though there remains room to improve its ability to detect more of the truly high-risk cancellations.</p>
 <p><strong>Limitations to keep in mind when interpreting :</strong></p>
 <ul>
@@ -251,26 +255,26 @@ Figure&nbsp;4: ROC Curve for the KNN Model
 </ul>
 <p><strong>Overall takeaway:</strong></p>
 <p>In overall, the KNN model provides a <strong>useful starting point</strong> for predicting hotel booking cancellations. It clearly outperforms a simple majority baseline, correctly identifies most non-cancellations and captures a meaningful portion of actual cancellations. With additional tuning, more features and a more careful treatment of missing values and thresholds, this approach could be developed into a practical decision support tool to help hotels manage overbooking strategies, communicate proactively with high-risk guests and reduce the last minute revenue losses.</p>
-</section>
-<section id="references" class="level2" data-number="8">
+<section id="references" class="level2" data-number="5.1">
 
 
 
 
 </section>
+</section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">8 References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">5.1 References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-antonio2017" class="csl-entry" role="listitem">
-Antonio, N., A. de Almeida, and L. Nunes. 2017. <span>“Predicting Hotel Bookings Cancellation with a Machine Learning Classification Model.”</span> In <em>Proceedings of the 2017 16th IEEE International Conference on Machine Learning and Applications (ICMLA)</em>, 1049–54. IEEE.
+Antonio, N., A. de Almeida, and L. Nunes. 2017. <span>“Predicting Hotel Bookings Cancellation with a Machine Learning Classification Model.”</span> In <em>Proceedings of the 2017 16th IEEE International Conference on Machine Learning and Applications (ICMLA)</em>, 1049–54. IEEE. <a href="https://doi.org/10.1109/ICMLA.2017.00-11">https://doi.org/10.1109/ICMLA.2017.00-11</a>.
 </div>
 <div id="ref-antonio2019_dataset" class="csl-entry" role="listitem">
-———. 2019. <span>“Hotel Booking Demand Datasets.”</span> <em>Data in Brief</em> 22: 41–49.
+———. 2019. <span>“Hotel Booking Demand Datasets.”</span> <em>Data in Brief</em> 22: 41–49. <a href="https://doi.org/10.1016/j.dib.2018.11.126">https://doi.org/10.1016/j.dib.2018.11.126</a>.
 </div>
 <div id="ref-antonio2019_bigdata" class="csl-entry" role="listitem">
-Antonio, N., A. De Almeida, and L. Nunes. 2019. <span>“Big Data in Hotel Revenue Management: Exploring Cancellation Drivers to Gain Insights into Booking Cancellation Behavior.”</span> <em>Cornell Hospitality Quarterly</em> 60 (4): 298–319.
+Antonio, N., A. De Almeida, and L. Nunes. 2019. <span>“Big Data in Hotel Revenue Management: Exploring Cancellation Drivers to Gain Insights into Booking Cancellation Behavior.”</span> <em>Cornell Hospitality Quarterly</em> 60 (4): 298–319. <a href="https://doi.org/10.1177/1938965519851466">https://doi.org/10.1177/1938965519851466</a>.
 </div>
 <div id="ref-sanchez2020" class="csl-entry" role="listitem">
-Sánchez, E. C., A. J. Sánchez-Medina, and M. Pellejero. 2020. <span>“Identifying Critical Hotel Cancellations Using Artificial Intelligence.”</span> <em>Tourism Management Perspectives</em> 35.
+Sánchez, E. C., A. J. Sánchez-Medina, and M. Pellejero. 2020. <span>“Identifying Critical Hotel Cancellations Using Artificial Intelligence.”</span> <em>Tourism Management Perspectives</em> 35. <a href="https://doi.org/10.1016/j.tmp.2020.100718">https://doi.org/10.1016/j.tmp.2020.100718</a>.
 </div>
 </div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -324,14 +328,13 @@ Sánchez, E. C., A. J. Sánchez-Medina, and M. Pellejero. 2020. <span>“Identif
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
         }
-      }
-      return codeEl.innerText;
+        return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

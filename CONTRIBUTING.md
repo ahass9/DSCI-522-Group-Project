@@ -5,6 +5,10 @@ helps, and credit will always be given.
 
 ## Types of Contributions
 
+### Adding Dependencies
+
+Only add new dependencies when necessary. All dependencies must be added to environment.yml. After adding a dependency, update your local environment and confirm that the project runs and the Quarto report renders correctly. Include the updated environment.yml in your pull request and briefly explain why the dependency was added.
+
 ### Report Bugs
 
 If you are reporting a bug, please include:
