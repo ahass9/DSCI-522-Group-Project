@@ -14,7 +14,10 @@ import numpy as np
 import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+from src.corr_matrix import compute_numeric_correlation
 from src.eda_barplot import create_barplot
+
+
 
 alt.data_transformers.disable_max_rows()
 
@@ -46,18 +49,12 @@ def create_eda_plot(input_path, figure_prefix):
 
     data = pd.read_csv(input_path) #training data only
 
-    corr = data.select_dtypes("number").corr()
-    plt.figure(figsize=(8, 6))
-    im = plt.imshow(corr, cmap="RdYlGn", vmin=-1, vmax=1)
-    plt.colorbar(im)
-    plt.title("Correlation Matrix")
-    plt.xticks(range(len(corr.columns)), corr.columns, rotation=90)
-    plt.yticks(range(len(corr.columns)), corr.columns)
-    plt.tight_layout()
+    compute_numeric_correlation(
+        data,
+        method="pearson", 
+        output_path=f"{figure_prefix}_correlation_matrix.png")
 
-    plt.savefig(f"{figure_prefix}_correlation_matrix.png")
-    plt.close()
-    click.echo(f"Correlation matrix of numerical features saved!")
+    click.echo("Correlation matrix of numerical features saved!")
 
     create_barplot(data,x_col="is_canceled",output_path=f"{figure_prefix}_target_var_distribution.png")
     click.echo(f" Bar chart of target variable (hotel cancellations) counts  saved!")
@@ -90,6 +87,4 @@ def create_eda_plot(input_path, figure_prefix):
 
 if __name__ == '__main__':
     create_eda_plot()
-
-
 
