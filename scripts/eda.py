@@ -12,6 +12,7 @@ import matplotlib.pyplot as plt
 import altair as alt
 import numpy as np
 import sys
+import seaborn as sns
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from src.eda_barplot import create_barplot
@@ -46,18 +47,17 @@ def create_eda_plot(input_path, figure_prefix):
 
     data = pd.read_csv(input_path) #training data only
 
-    corr = data.select_dtypes("number").corr()
-    plt.figure(figsize=(8, 6))
-    im = plt.imshow(corr, cmap="RdYlGn", vmin=-1, vmax=1)
-    plt.colorbar(im)
-    plt.title("Correlation Matrix")
-    plt.xticks(range(len(corr.columns)), corr.columns, rotation=90)
-    plt.yticks(range(len(corr.columns)), corr.columns)
-    plt.tight_layout()
+    from src.corr_matrix import compute_numeric_correlation
 
+    corr = compute_numeric_correlation(
+        data,
+        method="pearson",
+        annot=False
+    )
+    
     plt.savefig(f"{figure_prefix}_correlation_matrix.png")
     plt.close()
-    click.echo(f"Correlation matrix of numerical features saved!")
+    click.echo("Correlation matrix of numerical features saved!")
 
     create_barplot(data,x_col="is_canceled",output_path=f"{figure_prefix}_target_var_distribution.png")
     click.echo(f" Bar chart of target variable (hotel cancellations) counts  saved!")
@@ -90,33 +90,4 @@ def create_eda_plot(input_path, figure_prefix):
 
 if __name__ == '__main__':
     create_eda_plot()
-
-def compute_numeric_correlation(df: pd.DataFrame, method: str = "pearson") -> pd.DataFrame:
-    """
-    Compute a correlation matrix for numeric features in a dataframe.
-
-    Parameters
-    ----------
-    df : pd.DataFrame
-        Input dataframe
-    method : str, default="pearson"
-        Correlation method ("pearson", "spearman", "kendall")
-
-    Returns
-    -------
-    pd.DataFrame
-        Correlation matrix of numeric features
-    """
-    if not isinstance(df, pd.DataFrame):
-        raise TypeError("Input must be a pandas DataFrame")
-
-    numeric_df = df.select_dtypes(include="number")
-
-    if numeric_df.shape[1] < 2:
-        raise ValueError("DataFrame must contain at least two numeric columns")
-
-    return numeric_df.corr(method=method)
-
-
-
 
